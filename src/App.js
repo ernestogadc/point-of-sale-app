@@ -1,11 +1,11 @@
 import './App.css';
 import React, { useState } from 'react';
-/* import {
+import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
-} from "react-router-dom"; */
+} from "react-router-dom";
 import Header from './components/Header';
 import Button from './components/Button';
 import Ticket from './components/Ticket';
@@ -16,60 +16,35 @@ import Daytrack from './components/Daytrack';
 function App() {
 
   const [burgers, setBurgers] = useState([
-    {
-      id: 1,
-      type: 'Original',
-      price: 89,
-      amount: 0
-    },
-    {
-      id: 2,
-      type: 'Hot',
-      price: 98,
-      amount: 0
-    },
-    {
-      id: 3,
-      type: 'Honey',
-      price: 99,
-      amount: 0
-    },
-    {
-      id: 4,
-      type: 'BBQ',
-      price: 99,
-      amount: 0
-    },
-    {
-      id: 5,
-      type: 'Tamarindo-Chipotle',
-      price: 99,
-      amount: 0
-    },
-    {
-      id: 6,
-      type: '10 Boneless',
-      price: 89,
-      amount: 0
-    },
-    {
-      id: 7,
-      type: '20 Boneless',
-      price: 169,
-      amount: 0
-    },
-    {
-      id: 8,
-      type: '30 Boneless',
-      price: 249,
-      amount: 0
-    },
+    { id: 1, type: 'Original', price: 89, amount: 0 },
+    { id: 2, type: 'Hot', price: 98, amount: 0 },
+    { id: 3, type: 'Honey', price: 99, amount: 0 },
+    { id: 4, type: 'BBQ', price: 99, amount: 0 },
+    { id: 5, type: 'Tamarindo-Chipotle', price: 99, amount: 0 },
+    { id: 6, type: '10 Boneless', price: 89, amount: 0 },
+    { id: 7, type: '20 Boneless', price: 169, amount: 0 },
+    { id: 8, type: '30 Boneless', price: 249, amount: 0 },
+    { id: 9, type: 'French Fries', price: 99, amount: 0 },
 
   ])
 
   const [ticket, setTicket] = useState([])
   const [acount, setAcount] = useState([])
   const [total, setTotal] = useState(0)
+
+  const recreateArray = () => {
+    setBurgers([
+      { id: 1, type: 'Original', price: 89, amount: 0 },
+      { id: 2, type: 'Hot', price: 98, amount: 0 },
+      { id: 3, type: 'Honey', price: 99, amount: 0 },
+      { id: 4, type: 'BBQ', price: 99, amount: 0 },
+      { id: 5, type: 'Tamarindo-Chipotle', price: 99, amount: 0 },
+      { id: 6, type: '10 Boneless', price: 89, amount: 0 },
+      { id: 7, type: '20 Boneless', price: 169, amount: 0 },
+      { id: 8, type: '30 Boneless', price: 249, amount: 0 },
+      { id: 9, type: 'French Fries', price: 99, amount: 0 },
+    ])
+  }
 
 
   const addToTicket = id => {
@@ -96,52 +71,66 @@ function App() {
     setTotal(total - product.price)
   }
 
-  const confirm = (tick, tot) => {
+  const confirm = (tick) => {
+
+
     if (tick.length === 0) {
       alert("no hay nada en la cuenta")
     } else {
-      setAcount([tick, tot])
+
+      setAcount([...acount, tick])
+      setTicket([])
+      recreateArray()
+      setTotal(0)
+
+
     }
+
   }
 
   return (
-    <div className="App">
+    <Router>
       <Header />
-      <div className='container'>
-        <div className='ticket'>
-          <div className='ticketList'> {ticket.length > 0 ? ticket.map(ticketEl => (
-            (ticketEl.amount > 0 ? (<Ticket
-              key={ticketEl.id}
-              total={total}
-              product={ticketEl}
-              onAddItem={addItem}
-              onRestItem={restItem}
-            />) : reset())
+      <Switch>
+        <Route exact path='/'>
+          <div className="App">
+            <>
+              <div className='container'>
+                <div className='ticket'>
+                  <div className='ticketList'> {ticket.length > 0 ? ticket.map(ticketEl => (
+                    (ticketEl.amount > 0 ? (<Ticket
+                      key={ticketEl.id}
+                      total={total}
+                      product={ticketEl}
+                      onAddItem={addItem}
+                      onRestItem={restItem}
+                    />) : reset())
 
-          )) : <h1>No burgers</h1>}</div>
-          <div className='total'>
-            <Pay
-              ticket={ticket}
-              confirm={confirm}
-              total={total} />
+                  )) : <h1>No burgers</h1>}</div>
+                  <div className='total'>
+                    <Pay
+                      ticket={ticket}
+                      confirm={confirm}
+                      total={total} />
+                  </div>
+                </div>
+                <div className='buttons'>{burgers.map(burger => (
+                  <Button
+                    key={burger.id}
+                    burgerInfo={burger}
+                    onAddBurger={addToTicket} />
+                ))}
+                </div>
+              </div></>
           </div>
-        </div>
-        <div className='buttons'>{burgers.map(burger => (
-          <Button
-            key={burger.id}
-            burgerInfo={burger}
-            onAddBurger={addToTicket} />
-        ))}
-        </div>
-      </div>
-      <Daytrack
-        ticket={acount}
-      />
-    </div>
-
-
-
-  );
+        </Route>
+        <Route path='/track'>
+          <Daytrack
+            ticket={acount}
+          />
+        </Route>
+      </Switch>
+    </Router>);
 }
 
 export default App;
