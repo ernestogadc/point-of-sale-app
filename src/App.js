@@ -4,7 +4,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import Header from './components/Header';
 import Button from './components/Button';
@@ -21,10 +20,20 @@ function App() {
     { id: 3, type: 'Honey', price: 99, amount: 0 },
     { id: 4, type: 'BBQ', price: 99, amount: 0 },
     { id: 5, type: 'Tamarindo-Chipotle', price: 99, amount: 0 },
-    { id: 6, type: '10 Boneless', price: 89, amount: 0 },
-    { id: 7, type: '20 Boneless', price: 169, amount: 0 },
-    { id: 8, type: '30 Boneless', price: 249, amount: 0 },
-    { id: 9, type: 'French Fries', price: 99, amount: 0 },
+    { id: 6, type: 'French Fries', price: 99, amount: 0 },
+    { id: 7, type: '10 Boneless', price: 89, amount: 0 },
+    { id: 8, type: '20 Boneless', price: 169, amount: 0 },
+    { id: 9, type: '30 Boneless', price: 249, amount: 0 },
+    { id: 10, type: 'Papas gajo', price: 49, amount: 0 },
+    { id: 11, type: 'Papas a la francesa', price: 49, amount: 0 },
+    { id: 12, type: 'Aros de cebolla', price: 49, amount: 0 },
+    { id: 13, type: 'Aderezo extra', price: 5, amount: 0 },
+    { id: 14, type: 'Ensalada extra', price: 15, amount: 0 },
+    { id: 15, type: 'Descuento Original', price: -89, amount: 0 },
+    { id: 16, type: 'Descuento Hot', price: -98, amount: 0 },
+    { id: 17, type: 'Desc Honey BBQ Tam', price: -99, amount: 0 },
+    { id: 18, type: 'Desc Papas Aros', price: -99, amount: 0 },
+
 
   ])
 
@@ -39,10 +48,19 @@ function App() {
       { id: 3, type: 'Honey', price: 99, amount: 0 },
       { id: 4, type: 'BBQ', price: 99, amount: 0 },
       { id: 5, type: 'Tamarindo-Chipotle', price: 99, amount: 0 },
-      { id: 6, type: '10 Boneless', price: 89, amount: 0 },
-      { id: 7, type: '20 Boneless', price: 169, amount: 0 },
-      { id: 8, type: '30 Boneless', price: 249, amount: 0 },
-      { id: 9, type: 'French Fries', price: 99, amount: 0 },
+      { id: 6, type: 'French Fries', price: 99, amount: 0 },
+      { id: 7, type: '10 Boneless', price: 89, amount: 0 },
+      { id: 8, type: '20 Boneless', price: 169, amount: 0 },
+      { id: 9, type: '30 Boneless', price: 249, amount: 0 },
+      { id: 10, type: 'Papas gajo', price: 49, amount: 0 },
+      { id: 11, type: 'Papas a la francesa', price: 49, amount: 0 },
+      { id: 12, type: 'Aros de cebolla', price: 49, amount: 0 },
+      { id: 13, type: 'Aderezo extra', price: 5, amount: 0 },
+      { id: 14, type: 'Ensalada extra', price: 15, amount: 0 },
+      { id: 15, type: 'Descuento Original', price: -89, amount: 0 },
+      { id: 16, type: 'Descuento Hot', price: -98, amount: 0 },
+      { id: 17, type: 'Desc Honey BBQ Tam', price: -99, amount: 0 },
+      { id: 18, type: 'Desc Papas Aros', price: -99, amount: 0 },
     ])
   }
 
@@ -105,8 +123,7 @@ function App() {
                       onAddItem={addItem}
                       onRestItem={restItem}
                     />) : reset())
-
-                  )) : <h1>No burgers</h1>}</div>
+                  )) : <h1 style={{ color: "lightgray" }}>Cuenta nueva</h1>}</div>
                   <div className='total'>
                     <Pay
                       ticket={ticket}
@@ -121,6 +138,7 @@ function App() {
                     onAddBurger={addToTicket} />
                 ))}
                 </div>
+
               </div></>
           </div>
         </Route>

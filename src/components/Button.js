@@ -1,10 +1,10 @@
 const Button = ({ burgerInfo, onAddBurger }) => {
     return (
-        <div>
+        <>
             <button
-                className='btn'
+                className={burgerInfo.id > 14 ? "btn-discount" : "btn"}
                 onClick={() => onAddBurger(burgerInfo)}>{burgerInfo.type}</button>
-        </div>
+        </>
     )
 }
 

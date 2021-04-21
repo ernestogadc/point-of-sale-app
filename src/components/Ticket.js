@@ -3,11 +3,18 @@
 const Ticket = ({ product, onAddItem, onRestItem }) => {
     return (
         <div className='ticketElement'>
-            <h3>{product.amount} {product.type} X {product.price}</h3>
-            <button
-                onClick={() => onAddItem(product)}>more</button>
-            <button
-                onClick={() => onRestItem(product)}>less</button>
+            <div className='ticketelTxt'>
+                <p>{product.amount} - {product.type} </p>
+                <p>x  ${product.price}</p>
+            </div>
+            <div className='-ticketButtons'>
+                <button
+                    className='ticket-btn'
+                    onClick={() => onAddItem(product)}>+</button>
+                <button
+                    className='ticket-btn'
+                    onClick={() => onRestItem(product)}>-</button>
+            </div>
         </div>
     )
 }

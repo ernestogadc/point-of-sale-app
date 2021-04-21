@@ -1,21 +1,34 @@
+import Results from './Results'
+import TrakListInfo from './TrakListInfo';
+
 const Daytrack = ({ ticket }) => {
     let sum = 0
     for (let t of ticket) {
         sum += t.total
     }
+    let num = 1;
+    let index = 0;
 
     return (
-        <div className="dtlistContainer">
-            {ticket.map(tickete => (
-                <div className="dayTrackList">
-                    <div >{tickete.map(tick => (
-                        <h3>{tick.amount} x {tick.type}</h3>
-                    ))}</div>
-                    <h3>$   {tickete.total} .00</h3>
-                </div>
-            ))}
-            <h1 style={{ color: "white" }}>${sum}.00</h1>
-        </div>
+        <table className="dtlistContainer">
+            <tbody>
+                {ticket.length > 0 ? (ticket.map(tickete => (
+                    <tr key={index++} className="dayTrackList">
+                        <td>Cuenta {num++}</td>
+                        <td><TrakListInfo
+                            tickete={tickete} />
+                        </td>
+                        <td>$   {tickete.total} .00</td>
+                    </tr>
+                ))) : <h1>Aún no hay ventas</h1>}
+            </tbody>
+            <tfoot >
+                <tr><Results
+                    num={num}
+                    total={sum} />
+                </tr>
+            </tfoot>
+        </table>
     )
 
 }
