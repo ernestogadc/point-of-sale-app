@@ -79,11 +79,7 @@ function App() {
   }
 
 
-  const addItem = (product) => {
-    product.amount++
-    setTotal(total + product.price)
 
-  }
   const restItem = (product) => {
     product.amount--
     setTotal(total - product.price)
@@ -120,7 +116,6 @@ function App() {
                       key={ticketEl.id}
                       total={total}
                       product={ticketEl}
-                      onAddItem={addItem}
                       onRestItem={restItem}
                     />) : reset())
                   )) : <h1 style={{ color: "lightgray" }}>Cuenta nueva</h1>}</div>

@@ -20,7 +20,7 @@ const Daytrack = ({ ticket }) => {
                         </td>
                         <td>$   {tickete.total} .00</td>
                     </tr>
-                ))) : <h1>Aún no hay ventas</h1>}
+                ))) : <tr><td>Aún no hay ventas</td></tr>}
             </tbody>
             <tfoot >
                 <tr><Results

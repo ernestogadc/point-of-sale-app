@@ -15,7 +15,8 @@
   
   body{
     background-color: #034cee;
-  
+  width: 100vw;
+  height: 100%;
   }
 
   ul,li{
@@ -23,14 +24,13 @@
   }
   
   .buttons{
-    background-color: white;
     display: grid;
     grid-template-columns: repeat(3,1fr);
     height: 240px;
   }
   
   .App .btn{
-    width: 170px;
+    max-width: 170px;
     height: 80px;
     font-size: 23px;
     background-color: #4c9dfa;
@@ -42,12 +42,15 @@
     background-color: rgb(221, 113, 24);
     color: white;
     border: 3px solid #ffcc24;
-    width: 170px;
+    max-width: 170px;
     height: 80px;
     font-size: 23px;
 
 
   }
+
+
+
   .App .btn-discount:hover {
     background-color: rgb(100, 15, 15);
   }.App .btn-discount:active {
@@ -73,7 +76,7 @@
   
   .ticket {
     background-color: white;
-    width:400px;
+    max-width:400px;
     text-align: end;
     padding: 20px;
     display: flex;
@@ -171,7 +174,7 @@ background-position: center;
 
   .payTicket{
     display: flex;
-    padding: 30px;
+    padding: 30px 30px 10px 30px;
     justify-content: space-between;
     align-items: center;
   }
@@ -218,4 +221,55 @@ background-position: center;
     border-radius: 10px 0 0 10px;
   }
 
+  .change {
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+    padding: 10px 30px 10px 30px;
+    align-items: center;
+
+  }
+
+  .change input{
+    width: 100px;
+    height: 30px;
+  }
+
+  .change p{
+    font-weight: bold;
+  }
   
+  @media (max-width:500px){
+    .container {
+      flex-direction: column;
+    }
+    .buttons{
+      grid-template-columns: repeat(5,1fr)
+    }
+    .ticket{
+      height: 320px;
+    }
+    .links{
+      display: flex;
+      flex-direction: column;
+    }
+    .App .btn, 
+    .App .btn-discount{
+font-size: 10px;
+    }
+    table{
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+    }
+    table ul li{
+      width: auto;
+      
+
+    }
+    table tfoot{
+      left: 50vw;
+    }
+    
+
+  }
